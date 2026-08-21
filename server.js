@@ -20,6 +20,10 @@ let products = [
     { id: 3, name: "Игрушка-пищалка", price: 350, desc: "Мягкая игрушка с пищалкой" }
 ];
 
+let cart = [];
+let nextUserId = 2;
+let nextProductId = 4;
+
 // ==================== ЛОГИРОВАНИЕ ====================
 app.use((req, res, next) => {
     console.log(`📨 ${req.method} ${req.url}`);
@@ -141,6 +145,7 @@ app.delete('/api/products/:id', (req, res) => {
             message: 'Товар не найден' 
         });
     }
+    
     const deleted = products.splice(index, 1)[0];
     console.log('✅ Товар удален:', deleted);
     res.json({ 
@@ -170,5 +175,5 @@ app.listen(PORT, () => {
 
 // Держим сервер активным (пинг каждые 5 минут)
 setInterval(() => {
-console.log(`http://localhost:${PORT}`);
+    console.log('🔄 Пинг: сервер активен');
 }, 300000); // 5 минут
