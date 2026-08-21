@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 // ==================== НАСТРОЙКА СЕРВЕРА ====================
 const app = express();
 const PORT = process.env.PORT || 3000;
-const HOST = '0.0.0.0';  // ← ВАЖНО! Слушаем все интерфейсы
+const HOST = '0.0.0.0';  // ← ВАЖНО!
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -33,13 +33,11 @@ app.use((req, res, next) => {
 
 // ==================== API - ПОЛЬЗОВАТЕЛИ ====================
 
-// GET /api/users — все пользователи
 app.get('/api/users', (req, res) => {
     console.log('📋 Запрошен список пользователей');
     res.json(users);
 });
 
-// POST /api/register — регистрация
 app.post('/api/register', (req, res) => {
     console.log('📝 Регистрация нового пользователя');
     console.log('📥 Данные:', req.body);
@@ -72,7 +70,6 @@ app.post('/api/register', (req, res) => {
     });
 });
 
-// POST /api/login — вход
 app.post('/api/login', (req, res) => {
     console.log('🔑 Попытка входа');
     console.log('📥 Данные:', req.body);
@@ -98,13 +95,11 @@ app.post('/api/login', (req, res) => {
 
 // ==================== API - ТОВАРЫ ====================
 
-// GET /api/products — все товары
 app.get('/api/products', (req, res) => {
     console.log('📦 Запрошен список товаров');
     res.json(products);
 });
 
-// POST /api/products — создать товар
 app.post('/api/products', (req, res) => {
     console.log('➕ Создание нового товара');
     console.log('📥 Данные:', req.body);
@@ -134,7 +129,6 @@ app.post('/api/products', (req, res) => {
     });
 });
 
-// DELETE /api/products/:id — удалить товар
 app.delete('/api/products/:id', (req, res) => {
     const id = parseInt(req.params.id);
     console.log(`🗑 Удаление товара ID: ${id}`);
@@ -177,4 +171,4 @@ app.listen(PORT, HOST, () => {
 // Держим сервер активным (пинг каждые 5 минут)
 setInterval(() => {
     console.log('🔄 Пинг: сервер активен');
-}, 300000); // 5 минут
+}, 300000);
