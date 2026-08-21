@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 
 // ==================== НАСТРОЙКА СЕРВЕРА ====================
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -19,10 +19,6 @@ let products = [
     { id: 2, name: "Лоток для кошек", price: 920, desc: "Закрытый лоток с фильтром" },
     { id: 3, name: "Игрушка-пищалка", price: 350, desc: "Мягкая игрушка с пищалкой" }
 ];
-
-let cart = [];
-let nextUserId = 2;
-let nextProductId = 4;
 
 // ==================== ЛОГИРОВАНИЕ ====================
 app.use((req, res, next) => {
