@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 // ==================== НАСТРОЙКА СЕРВЕРА ====================
 const app = express();
 const PORT = process.env.PORT || 3000;
+const HOST = '0.0.0.0';  // ← ВАЖНО! Слушаем все интерфейсы
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -156,11 +157,11 @@ app.delete('/api/products/:id', (req, res) => {
 });
 
 // ==================== ЗАПУСК СЕРВЕРА ====================
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
     console.log('');
     console.log('═══════════════════════════════════════════');
     console.log('🐾 СЕРВЕР ЗАПУЩЕН!');
-    console.log(`🌐 http://localhost:${PORT}`);
+    console.log(`🌐 http://${HOST}:${PORT}`);
     console.log('');
     console.log('📋 Доступные API:');
     console.log(`   GET  /api/users     - все пользователи`);
