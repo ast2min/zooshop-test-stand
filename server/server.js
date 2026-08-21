@@ -145,7 +145,6 @@ app.delete('/api/products/:id', (req, res) => {
             message: 'Товар не найден' 
         });
     }
-    fetch('https://zooshop-api.onrender.com/api/register')
     const deleted = products.splice(index, 1)[0];
     console.log('✅ Товар удален:', deleted);
     res.json({ 
@@ -172,3 +171,8 @@ app.listen(PORT, () => {
     console.log('═══════════════════════════════════════════');
     console.log('');
 });
+
+// Держим сервер активным (пинг каждые 5 минут)
+setInterval(() => {
+console.log(`http://localhost:${PORT}`);
+}, 300000); // 5 минут
